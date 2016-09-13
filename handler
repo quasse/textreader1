@@ -1,0 +1,7 @@
+def getInput():
+    print "get input\n"
+    f = open('Grimm Fairy Tales Golden Bird.txt', 'r')
+    print f.read()
+
+if __name__=="__main__":
+    getInput()
