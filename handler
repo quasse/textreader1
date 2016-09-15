@@ -1,7 +1,20 @@
+import nltk
+
 def getInput():
     print "get input\n"
-    f = open('Grimm Fairy Tales Golden Bird.txt', 'r')
-    print f.read()
+    f = open('texts/test_story.txt', 'r')
+    #with open('texts/test_story.txt', 'r') as myfile:
+       # data=myfile.read()
+    nltkTest(f)
+    #print f.read()
+
+def nltkTest(text):
+    #nltk.download()
+    excerpt = text.read()
+    tokens = nltk.word_tokenize(excerpt)
+    tagged = nltk.pos_tag(tokens)
+    print tagged[0:6]
+
 
 if __name__=="__main__":
     getInput()
