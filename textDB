@@ -1,0 +1,8 @@
+class textDB():
+
+    db = []
+
+    def __init__(self, content):
+        print "We are in text"
+        for x in content:
+            print x

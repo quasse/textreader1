@@ -1,11 +1,13 @@
 import nltk
+import test1
 
 def getInput():
     print "get input\n"
     f = open('texts/test_story.txt', 'r')
+    z = test1
     #with open('texts/test_story.txt', 'r') as myfile:
        # data=myfile.read()
-    nltkTest(f)
+    #nltkTest(f)
     #print f.read()
 
 def nltkTest(text):
