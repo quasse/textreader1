@@ -1,10 +1,13 @@
 import nltk
-import test1
+from test1 import test1
+from TextDatabase import Directory
 
 def getInput():
     print "get input\n"
     f = open('texts/test_story.txt', 'r')
-    z = test1
+    z = test1()
+    z.test()
+    y = Directory(f.read())
     #with open('texts/test_story.txt', 'r') as myfile:
        # data=myfile.read()
     #nltkTest(f)
