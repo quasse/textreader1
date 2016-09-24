@@ -1,25 +1,19 @@
 import nltk
-from test1 import test1
 from TextDatabase import Directory
 
+# gets input from the user
 def getInput():
-    print "get input\n"
     f = open('texts/test_story.txt', 'r')
-    z = test1()
-    z.test()
-    y = Directory(f.read())
-    #with open('texts/test_story.txt', 'r') as myfile:
-       # data=myfile.read()
-    #nltkTest(f)
-    #print f.read()
+    text = f.read()
+    taggedText = nltkIfy(text)
+    book = Directory(text, taggedText)
 
-def nltkTest(text):
-    #nltk.download()
-    excerpt = text.read()
-    tokens = nltk.word_tokenize(excerpt)
+# Retrurns the text with each word classified into its part-of-speech
+def nltkIfy(text):
+    tokens = nltk.word_tokenize(text)
     tagged = nltk.pos_tag(tokens)
-    print tagged[0:6]
+    return tagged
 
-
+# Starts the program off
 if __name__=="__main__":
     getInput()
