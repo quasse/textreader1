@@ -3,10 +3,9 @@ import numpy as np
 import re
 
 class Directory():
-    def __init__(self, text, taggedText):
+    def __init__(self, text):
         self.text = text
-        self.taggedText = taggedText
-        self.textList = text.split()
+        #self.textList = text.split()
         self.readText()
 
     # Reads through text and analyzes certain parts
@@ -26,12 +25,10 @@ class Directory():
 
         grafs = self.splitGraphs(self.text)
 
-        '''
-        Embedded for loop that numbers each chapter, paragraph, sentence, and word
-        and adds data to a list
+        # Embedded for loop that numbers each chapter, paragraph, sentence, and word
+        # and adds data to a list
 
-        Eventually I will need to put the grafFragment, sentFragment, and wordFragment into a list with info
-        '''
+        # Eventually I will need to put the grafFragment, sentFragment, and wordFragment into a list with info
         # Enumberates through a list of text split in paragraphs
         for x, grafFragment in enumerate(grafs):
             #print "g", grafNum, grafFragment
@@ -42,6 +39,7 @@ class Directory():
                 print "s", sentNum, sentFragment
                 words = self.splitWords(sents[y])
                 sentNum += 1
+                # Enumerates through a list of text split into words. Under construction
                 for z, wordFrgament in enumerate(words):
                     print wordFrgament
 
@@ -67,23 +65,18 @@ class Directory():
 
     # Splits a text into chapters
 
-    #Will have to find chapters
+    # Will have to find chapters
 
     # Will work on later
     def splitChapters(self, chapters):
         print chapters
 
-    '''
-    Splits a block of text into paragraphs. Returns a list
-    I will need to figure out later how to find if paragraphs are split with one line break or two
-    '''
+    # Splits a block of text into paragraphs. Returns a list
+    # I will need to figure out later how to find if paragraphs are split with one line break or two
     def splitGraphs(self, graphs):
         return graphs.split("\n")
 
-    '''
-    Splits a block of text into sentences. Returns a list
-    Ends each sentence with a period
-    '''
+    # Splits a block of text into sentences. Returns a list. Ends each sentence with a period
     def splitSents(self, sents):
         # This code is copied from http://stackoverflow.com/questions/4576077/python-split-text-on-sentences
         caps = "([A-Z])"
@@ -119,6 +112,9 @@ class Directory():
         sentences = [s.strip() for s in sentences]
         return sentences
 
-    # Splits a sentence into parts of speech
+    # Splits a sentence into parts of speech, using NLTK
+    # Returns a list of tuples that is (word, POS)
     def splitWords(self, words):
-        return words.split(" ")
+        tokens = nltk.word_tokenize(words)
+        tagged = nltk.pos_tag(tokens)
+        return tagged
