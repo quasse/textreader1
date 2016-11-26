@@ -1,11 +1,13 @@
 import nltk
-import numpy as np
 import re
+import TextTypes
 
 class Directory():
     def __init__(self, text):
         self.text = text
-        #self.textList = text.split()
+        self.textList = text.split()
+        # list of dicts that will hold information for each word in the text
+        #self.index
         self.readText()
 
     # Reads through text and analyzes certain parts
@@ -41,7 +43,9 @@ class Directory():
                 sentNum += 1
                 # Enumerates through a list of text split into words. Under construction
                 for z, wordFrgament in enumerate(words):
+                    TextTypes.word(wordFrgament, wordNum)
                     print wordFrgament
+                    wordNum+=1
 
     # Returns a list of characters from the text
     # This method is under construction
@@ -92,6 +96,7 @@ class Directory():
         text = re.sub(websites, "<prd>\\1", text)
         if "Ph.D" in text: text = text.replace("Ph.D.", "Ph<prd>D<prd>")
         if "a.m." in text: text = text.replace("a.m.", "a<prd>m<prd>")
+        if "p.m." in text: text = text.replace("p.m.", "p<prd>m<prd>")
         if "..." in text: text = text.replace("...", "<prd><prd><prd>")
         text = re.sub("\s" + caps + "[.] ", " \\1<prd> ", text)
         text = re.sub(acronyms + " " + starters, "\\1<stop> \\2", text)
